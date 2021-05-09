@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>To do List</title>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" type="text/css" href="/css/calendar.css"/>
+        <link rel="stylesheet" href="/js/calendar.js"/>
+    </head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="cont_principal">
+    <div class="cont_centrar">
+
+        <div class="cont_todo_list_top">
+            <div class="cont_titulo_cont">
+                <h3>TO DO LIST</h3>
+            </div>
+            <div class="cont_add_titulo_cont"><a href="#e" onclick="add_new()"><i class="material-icons">&#xE145;</i></a>
+            </div>
+
+            <!--   End cont_todo_list_top  -->
+        </div>
+        <form action="/post" method="post">
+            <div class="cont_crear_new">
+                <table class="table">
+                    <tr>
+                        <th>Action</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td>
+<!--                            <select type="text" name="action" id="inputAction">-->
+<!--                                <option value="SHOPPING">SHOPPING</option>-->
+<!--                                <option value="WORK">WORK</option>-->
+<!--                                <option value="SPORT">SPORT</option>-->
+<!--                                <option value="MUSIC">MUSIC</option>-->
+<!--                            </select>-->
+                            <!-- End td 1 -->
+                            <input type="text" name="action" id="inputAction">
+                        </td>
+                        <td>
+                            <input type="text"  name="title" class="input_title_desc" id="inputTitle" />
+
+                            <!-- End td 2 -->
+                        </td>
+                        <td>
+<!--                            <select name="" class="input_description_title"  id="date_select">-->
+<!--                                <option value="TODAY">TODAY</option>-->
+<!--                                <option value="TOMORROW">TOMORROW</option>       -->
+<!--                            </select>-->
+
+                            <input type="date" class="input_description_title" name="completeDate" id="inputDate"/>
+
+                            <!-- End td 3 -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="titl_description" >Description</th>
+                    </tr>
+                    <tr>
+
+                        <td colspan="3">
+<!--                            <input type="text" class="input_description" required />-->
+                            <input type="text" class="input_description" id="inputDescription" name="description"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <button class="btn_add_fin" type="submit">ADD</button>
+                        </td>
+                    </tr>
+                </table>
+                <!--   End cont_crear_new  -->
+            </div>
+        </form>
+
+
+        <div th:each="todo : ${list}">
+            <div class="cont_princ_lists">
+                <ul>
+                    <li class="list_shopping li_num_0_1">
+                        <div class="col_md_1_list">
+                            <p th:text="${todo.action}"></p>
+                        </div>
+                        <div class="col_md_2_list">
+                            <h4 th:text="${todo.title}"></h4>
+                            <p th:text="${todo.description}"></p>
+                        </div>
+                        <div class="col_md_3_list">
+                            <div class="cont_text_date">
+                                <p th:text="${todo.completeDate}"></p>
+                            </div>
+                            <div class="cont_btns_options">
+                                <form id="postDelete" th:action="@{'/post/'+${todo.id}}" method="post">
+<!--                                    <input type="hidden" class="material-icons">&#xE5CA;-->
+                                </form>
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="document.getElementById('postDelete').submit();"><i class="material-icons">&#xE5CA;</i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+<!--                            <div class="cont_btns_options">-->
+<!--                                <ul>-->
+<!--                                    <form th:action="@{'/post/'+${todo.id}}" method="post">-->
+<!--                                            <li>-->
+<!--                                                <a href="#" onclick="finish_action('0','0_1');"><i class="material-icons">&#xE5CA;</i></a>-->
+<!--                                            </li>-->
+<!--                                    </form>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+                        </div>
+                    </li>
+                    <!-- <li class="list_work"></li>
+                      <li class="list_sport"></li>
+                      <li class="list_music"></li>
+                     -->
+                </ul>
+                <!--   End cont_todo_list_top  -->
+            </div>
+        </div>
+
+
+
+        <!--   End cont_central  -->
+    </div>
+</div>
+<!-- partial -->
+<script  src="/js/calendar.js"></script>
+
+</body>
+</html>
