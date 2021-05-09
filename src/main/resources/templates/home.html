@@ -94,14 +94,22 @@
                                 <p th:text="${todo.completeDate}"></p>
                             </div>
                             <div class="cont_btns_options">
-                                <form id="postDelete" th:action="@{'/post/'+${todo.id}}" method="post">
-<!--                                    <input type="hidden" class="material-icons">&#xE5CA;-->
-                                </form>
+<!--                                <form id="postDelete" th:action="@{'/post/'+${todo.id}}" method="post">-->
+<!--&lt;!&ndash;                                    <input type="hidden" class="material-icons">&#xE5CA;&ndash;&gt;-->
+<!--                                </form>-->
+<!--                                <ul>-->
+<!--                                    <li>-->
+<!--                                        <a href="#" onclick="document.getElementById('postDelete').submit();"><i class="material-icons">&#xE5CA;</i></a>-->
+<!--                                    </li>-->
+
+<!--                                </ul>-->
+
                                 <ul>
                                     <li>
-                                        <a href="#" onclick="document.getElementById('postDelete').submit();"><i class="material-icons">&#xE5CA;</i></a>
+                                        <form th:action="@{'/post/'+${todo.id}}" method="post">
+                                            <button class="material-icons">&#xE5CA;</button>
+                                        </form>
                                     </li>
-
                                 </ul>
                             </div>
 <!--                            <div class="cont_btns_options">-->
